@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Partie 3 – Mise en page avec Flexbox et Grid – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Partie 3</h1>
+        <p class="sous-titre">Mise en page avec Flexbox et Grid</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart">
+                <p><strong>Objectif :</strong> à la fin de cette partie, la mise en page de votre site <strong>en version ordinateur</strong> correspond aux captures : les éléments sont placés côte à côte et la galerie des pièces forme une grille. La version mobile viendra à la partie 4. D'ici là, testez votre site dans une fenêtre large.</p>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-0"><span>Étape 0 : l'échauffement</span><span class="duree">15 min</span></a></li>
+                    <li><a href="#rappel"><span>Rappel : Flexbox et Grid</span><span class="duree">à lire</span></a></li>
+                    <li><a href="#etape-1"><span>Étape 1 : préparer le terrain</span><span class="duree">25 min</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : Flexbox</span><span class="duree">1 h 40</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : Grid</span><span class="duree">1 h 10</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : la vérification et la sauvegarde</span><span class="duree">20 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="fichier">fichier.css</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-0">
+            <h2><span class="numero-etape">Étape 0</span> L'échauffement <span class="duree">15 min, sans internet ni IA</span></h2>
+
+            <p>Sur votre propre code :</p>
+            <ol>
+                <li>Remplacez la couleur dorée par ce bleu-vert : <code class="css">#2a9d8f</code>, <strong>partout</strong> sur le site. Combien de fois apparaissait-elle dans votre <code class="fichier">style.css</code> ? Une fois le résultat observé, <strong>revenez à l'ancienne couleur</strong>.</li>
+                <li>Mettez en gras la <strong>dernière</strong> ligne du tableau de configuration, <strong>sans ajouter de classe</strong> dans le HTML.</li>
+            </ol>
+            <details class="solution">
+                <summary>Indications</summary>
+                <ol>
+                    <li>Utilisez la fonction <strong>Rechercher et remplacer</strong> de Visual Studio Code (<kbd>Ctrl</kbd> + <kbd>H</kbd>) dans <code class="fichier">style.css</code> : cherchez le code hexadécimal du doré que vous avez relevé et remplacez-le par <code class="css">#2a9d8f</code>. Le nombre d'occurrences s'affiche dans le champ de recherche. Si certaines zones restent dorées, c'est que la couleur y est écrite autrement (en majuscules, ou avec une valeur légèrement différente) : c'est tout l'intérêt de noter sa palette et de l'utiliser de façon cohérente. Pour revenir à l'ancienne couleur, faites le remplacement inverse.</li>
+                    <li>Ciblez la dernière ligne du corps du tableau avec la pseudo-classe <code class="css">:last-child</code> : le sélecteur <code class="css">tbody tr:last-child</code>, avec la propriété <code class="css">font-weight</code> et une graisse que vous avez chargée (600 ou 700).</li>
+                </ol>
+            </details>
+        </section>
+
+        <section class="etape" id="rappel">
+            <h2><span class="numero-etape">Rappel</span> Flexbox et Grid</h2>
+
+            <p>Les deux outils fonctionnent sur le même principe : on applique <code class="css">display: flex</code> ou <code class="css">display: grid</code> à un <strong>conteneur</strong>, et ce sont ses <strong>enfants directs</strong> qui sont placés. Les petits-enfants ne sont pas concernés.</p>
+
+<pre data-langage="HTML"><code><span class="t-balise">&lt;ul&gt;</span>                  <span class="t-note">← le conteneur qui va recevoir display: flex</span>
+    <span class="t-balise">&lt;li&gt;</span>…<span class="t-balise">&lt;/li&gt;</span>       <span class="t-note">← les enfants directs qui seront placés</span>
+    <span class="t-balise">&lt;li&gt;</span>…<span class="t-balise">&lt;/li&gt;</span>
+<span class="t-balise">&lt;/ul&gt;</span></code></pre>
+
+            <h3>Flexbox : aligner sur une ligne (ou une colonne)</h3>
+
+            <p>Flexbox place les éléments <strong>dans une seule direction</strong> : en ligne (par défaut) ou en colonne.</p>
+
+            <figure class="schema">
+                <svg viewBox="0 0 560 250" role="img" aria-label="Les quatre directions de Flexbox : row de gauche à droite, row-reverse de droite à gauche, column de haut en bas, column-reverse de bas en haut">
+                    <defs>
+                        <marker id="fleche" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M0 0 L10 5 L0 10 Z" fill="#0b1f3a"/>
+                        </marker>
+                    </defs>
+                    <!-- row -->
+                    <g fill="#c8a24a" stroke="#0b1f3a" stroke-width="2">
+                        <rect x="20" y="20" width="48" height="48" rx="6"/>
+                        <rect x="78" y="20" width="48" height="48" rx="6"/>
+                        <rect x="136" y="20" width="48" height="48" rx="6"/>
+                        <rect x="194" y="20" width="48" height="48" rx="6"/>
+                    </g>
+                    <line x1="34" y1="44" x2="232" y2="44" stroke="#0b1f3a" stroke-width="3" marker-end="url(#fleche)"/>
+                    <text x="131" y="92" text-anchor="middle" class="schema-legende">row</text>
+                    <!-- row-reverse -->
+                    <g fill="#c8a24a" stroke="#0b1f3a" stroke-width="2">
+                        <rect x="20" y="130" width="48" height="48" rx="6"/>
+                        <rect x="78" y="130" width="48" height="48" rx="6"/>
+                        <rect x="136" y="130" width="48" height="48" rx="6"/>
+                        <rect x="194" y="130" width="48" height="48" rx="6"/>
+                    </g>
+                    <line x1="228" y1="154" x2="30" y2="154" stroke="#0b1f3a" stroke-width="3" marker-end="url(#fleche)"/>
+                    <text x="131" y="202" text-anchor="middle" class="schema-legende">row-reverse</text>
+                    <!-- column -->
+                    <g fill="#c8a24a" stroke="#0b1f3a" stroke-width="2">
+                        <rect x="330" y="10" width="44" height="44" rx="6"/>
+                        <rect x="330" y="60" width="44" height="44" rx="6"/>
+                        <rect x="330" y="110" width="44" height="44" rx="6"/>
+                        <rect x="330" y="160" width="44" height="44" rx="6"/>
+                    </g>
+                    <line x1="352" y1="22" x2="352" y2="196" stroke="#0b1f3a" stroke-width="3" marker-end="url(#fleche)"/>
+                    <text x="352" y="232" text-anchor="middle" class="schema-legende">column</text>
+                    <!-- column-reverse -->
+                    <g fill="#c8a24a" stroke="#0b1f3a" stroke-width="2">
+                        <rect x="460" y="10" width="44" height="44" rx="6"/>
+                        <rect x="460" y="60" width="44" height="44" rx="6"/>
+                        <rect x="460" y="110" width="44" height="44" rx="6"/>
+                        <rect x="460" y="160" width="44" height="44" rx="6"/>
+                    </g>
+                    <line x1="482" y1="192" x2="482" y2="18" stroke="#0b1f3a" stroke-width="3" marker-end="url(#fleche)"/>
+                    <text x="482" y="232" text-anchor="middle" class="schema-legende">column-reverse</text>
+                </svg>
+                <figcaption>Les quatre valeurs de <code class="css">flex-direction</code> : la flèche indique l'axe principal, dans lequel les éléments sont placés.</figcaption>
+            </figure>
+
+            <p>Les propriétés permettent de préciser le comportement des éléments contenus.</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Propriété (sur le conteneur)</th>
+                            <th>Rôle</th>
+                            <th>Valeurs courantes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="css">display: flex</code></td>
+                            <td>Active Flexbox</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">flex-direction</code></td>
+                            <td>Sens de l'alignement</td>
+                            <td><code class="css">row</code> (en ligne), <code class="css">column</code> (en colonne)</td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">justify-content</code></td>
+                            <td>Répartition <strong>le long</strong> de l'axe principal</td>
+                            <td><code class="css">flex-start</code>, <code class="css">center</code>, <code class="css">space-between</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">align-items</code></td>
+                            <td>Alignement <strong>perpendiculaire</strong> à l'axe principal</td>
+                            <td><code class="css">stretch</code> (par défaut), <code class="css">center</code>, <code class="css">flex-start</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">flex-wrap</code></td>
+                            <td>Passage à la ligne s'il manque de la place</td>
+                            <td><code class="css">wrap</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="encart encart-clair">
+                <p><strong>Attention :</strong> par défaut, <code class="css">align-items: stretch</code> étire les éléments sur toute la hauteur du conteneur. Si une image se retrouve déformée ou rognée dans un conteneur flex, c'est souvent la cause.</p>
+            </div>
+
+            <p>N'oubliez pas d'utiliser le <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">guide Flexbox de CSS-Tricks</a> en cas de besoin !</p>
+
+            <h3>Grid : organiser en lignes ET en colonnes</h3>
+
+            <p>Grid découpe le conteneur en <strong>colonnes et en rangées</strong>, et place les éléments dans les cases.</p>
+
+            <figure class="schema">
+                <svg viewBox="0 0 470 280" role="img" aria-label="Une grille de 3 colonnes et 2 rangées. Les lignes verticales sont numérotées de 1 à 4, les lignes horizontales de 1 à 3. Un élément placé avec grid-column: 2 et grid-row: 1/3 occupe la deuxième colonne sur toute la hauteur.">
+                    <!-- cases vides -->
+                    <g fill="#ffffff" stroke="#d5ccb5" stroke-width="2">
+                        <rect x="60" y="50" width="120" height="85"/>
+                        <rect x="300" y="50" width="120" height="85"/>
+                        <rect x="60" y="135" width="120" height="85"/>
+                        <rect x="300" y="135" width="120" height="85"/>
+                    </g>
+                    <!-- lignes de la grille (dessinées avant l'élément, qui les recouvre) -->
+                    <g stroke="#1e4a7a" stroke-width="2" stroke-dasharray="6 5">
+                        <line x1="60" y1="38" x2="60" y2="232"/>
+                        <line x1="180" y1="38" x2="180" y2="232"/>
+                        <line x1="300" y1="38" x2="300" y2="232"/>
+                        <line x1="420" y1="38" x2="420" y2="232"/>
+                        <line x1="48" y1="50" x2="432" y2="50"/>
+                        <line x1="48" y1="135" x2="432" y2="135"/>
+                        <line x1="48" y1="220" x2="432" y2="220"/>
+                    </g>
+                    <!-- élément placé -->
+                    <rect x="184" y="54" width="112" height="162" rx="6" fill="#c8a24a" stroke="#0b1f3a" stroke-width="2"/>
+                    <text x="240" y="129" text-anchor="middle" class="schema-code">grid-column: 2</text>
+                    <text x="240" y="149" text-anchor="middle" class="schema-code">grid-row: 1/3</text>
+                    <!-- numéros des lignes -->
+                    <g class="schema-numero" text-anchor="middle">
+                        <text x="60" y="28">1</text>
+                        <text x="180" y="28">2</text>
+                        <text x="300" y="28">3</text>
+                        <text x="420" y="28">4</text>
+                        <text x="30" y="56">1</text>
+                        <text x="30" y="141">2</text>
+                        <text x="30" y="226">3</text>
+                    </g>
+                    <text x="240" y="264" text-anchor="middle" class="schema-legende">3 colonnes, 2 rangées</text>
+                </svg>
+                <figcaption>Les lignes de la grille sont numérotées à partir de 1. Ici, l'élément doré est placé dans la deuxième colonne, et s'étend de la ligne horizontale 1 à la ligne 3 : il occupe donc les deux rangées.</figcaption>
+            </figure>
+
+            <p>Les propriétés permettent de préciser la configuration de la grille et le comportement des éléments contenus.</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Propriété</th>
+                            <th>S'applique à</th>
+                            <th>Rôle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="css">display: grid</code></td>
+                            <td>Conteneur</td>
+                            <td>Active Grid</td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">grid-template-columns</code></td>
+                            <td>Conteneur</td>
+                            <td>Définit les colonnes : <code class="css">1fr 1fr 1fr</code> ou <code class="css">repeat(3, 1fr)</code> pour 3 colonnes égales</td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">gap</code></td>
+                            <td>Conteneur</td>
+                            <td>Espace entre les lignes et les colonnes</td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">grid-column: 2</code></td>
+                            <td>Enfant</td>
+                            <td>L'élément se positionne sur la deuxième colonne</td>
+                        </tr>
+                        <tr>
+                            <td><code class="css">grid-row: 1/3</code></td>
+                            <td>Enfant</td>
+                            <td>L'élément se positionne sur les deux premières lignes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>L'unité <strong><code class="css">fr</code></strong> représente une part de l'espace disponible : <code class="css">2fr 1fr</code> donne une colonne deux fois plus large que l'autre.</p>
+
+            <p>N'oubliez pas d'utiliser le <a href="https://css-tricks.com/complete-guide-css-grid-layout/">guide Grid de CSS-Tricks</a> en cas de besoin !</p>
+
+            <h3>Flex ou Grid ?</h3>
+
+            <div class="encart">
+                <p>Posez-vous une question : <strong>est-ce que je place des éléments sur une seule ligne/colonne, ou dans un tableau de lignes et de colonnes ?</strong> Une ligne → Flexbox. Un tableau → Grid.</p>
+            </div>
+
+            <p>N'oubliez pas que vous pouvez <strong>vous entraîner à tout moment</strong> avec <a href="https://flexboxfroggy.com/#fr">Flexbox Froggy</a> et <a href="https://cssgridgarden.com/#fr">Grid Garden</a>, qui font pratiquer ces propriétés en quelques minutes.</p>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> Préparer le terrain <span class="duree">25 min</span></h2>
+
+            <p><strong>1. Le modèle de boîte.</strong> Ajoutez cette règle tout en haut de votre <code class="fichier">style.css</code> :</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">*</span> {
+    <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>;
+}</code></pre>
+
+            <p>Par défaut, quand vous donnez <code class="css">width: 300px</code> à un élément, son <code class="css">padding</code> et son <code class="css">border</code> <strong>s'ajoutent</strong> à ces 300 px, ce qui fausse tous les calculs de largeur. Avec <code class="css">border-box</code>, la largeur indiquée <strong>inclut</strong> le <code class="css">padding</code> et le <code class="css">border</code> : un élément de 300 px fait vraiment 300 px.</p>
+
+            <p><strong>2. Les premières <code class="html">div</code>.</strong> Vous avez maintenant le droit d'utiliser des <code class="html">div</code>, <strong>uniquement comme conteneurs de mise en page</strong>, quand aucune balise existante ne peut jouer ce rôle. Par exemple, pour placer la galerie en grille, il faut un conteneur qui regroupe <strong>seulement</strong> les cartes, sans le titre et l'introduction de la section.</p>
+
+            <p>Chaque <code class="html">div</code> devra être accompagnée d'un commentaire HTML qui explique sa présence :</p>
+
+<pre data-langage="HTML"><code><span class="t-com">&lt;!-- div : conteneur grid qui regroupe uniquement les cartes --&gt;</span>
+<span class="t-balise">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"galerie"</span><span class="t-balise">&gt;</span></code></pre>
+
+            <p><strong>3. Centrer le contenu.</strong> Sur un grand écran, le texte ne doit plus s'étaler sur toute la largeur. Pour centrer un bloc, donnez-lui une largeur maximale et des marges latérales automatiques :</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">.galerie</span> {
+    <span class="t-prop">max-width</span>: <span class="t-val">1100px</span>;
+    <span class="t-prop">margin</span>: <span class="t-val">0 auto</span>;
+}</code></pre>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> Flexbox <span class="duree">1 h 40</span></h2>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Résultat attendu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>En-tête</td>
+                            <td>Le nom du site à gauche, le menu à droite, alignés verticalement</td>
+                        </tr>
+                        <tr>
+                            <td>Menu</td>
+                            <td>Les liens sur une seule ligne, espacés régulièrement</td>
+                        </tr>
+                        <tr>
+                            <td>Accueil</td>
+                            <td>Le texte à gauche, le visuel à droite, à parts égales, centrés verticalement</td>
+                        </tr>
+                        <tr>
+                            <td>Le jeu</td>
+                            <td>Le contenu principal à gauche (environ deux tiers), l'encart à droite (environ un tiers)</td>
+                        </tr>
+                        <tr>
+                            <td>Actualités</td>
+                            <td>La liste des actualités à gauche, la fiche technique à droite</td>
+                        </tr>
+                        <tr>
+                            <td>Une actualité</td>
+                            <td>L'image à gauche, le texte à droite. <strong>L'image garde ses proportions.</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Mentions légales</td>
+                            <td>Dans l'en-tête, le nom du site à gauche et le bouton de retour à droite</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> Grid <span class="duree">1 h 10</span></h2>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Résultat attendu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Galerie des pièces</td>
+                            <td>4 colonnes égales. La carte du hall d'entrée occupe <strong>2 colonnes et 2 rangées</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td>Pied de page</td>
+                            <td>3 colonnes égales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Nouvelle propriété utile : <code class="css">object-fit</code>.</strong> Pour que toutes les images des pièces aient la même hauteur sans être déformées, fixez leur hauteur et ajoutez <code class="css">object-fit: cover</code> : l'image remplit la zone et le surplus est rogné, comme un cadre photo.</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">.piece img</span> {
+    <span class="t-prop">width</span>: <span class="t-val">100%</span>;
+    <span class="t-prop">height</span>: <span class="t-val">200px</span>;
+    <span class="t-prop">object-fit</span>: <span class="t-val">cover</span>;
+}</code></pre>
+
+            <p>La carte vedette, plus grande, aura besoin d'une image plus haute.</p>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> La vérification et la sauvegarde <span class="duree">20 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Vérifiez les points suivants :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span><code class="css">box-sizing: border-box</code> est en haut de ma feuille de style.</span></label></li>
+                        <li><label><input type="checkbox"><span>J'utilise Flexbox à <strong>au moins quatre</strong> endroits différents.</span></label></li>
+                        <li><label><input type="checkbox"><span>J'utilise Grid à <strong>au moins deux</strong> endroits différents.</span></label></li>
+                        <li><label><input type="checkbox"><span>La carte vedette occupe 2 colonnes et 2 rangées.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucune image n'est déformée.</span></label></li>
+                        <li><label><input type="checkbox"><span>Chaque <code class="html">div</code> est précédée d'un commentaire qui la justifie.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le contenu est centré et ne s'étale pas sur toute la largeur d'un grand écran.</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Passez de nouveau vos fichiers dans les validateurs <a href="https://validator.w3.org/#validate_by_upload">HTML</a> et <a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS</a>.</p>
+                </li>
+                <li>
+                    <p>Faites une copie de votre dossier de travail, nommez-la <code class="fichier">partie-3</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt de la partie 3. <strong>Sans ce dépôt, l'enseignant ne pourra pas vous aider sur la partie suivante.</strong></p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>

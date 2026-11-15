@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Partie 2 – CSS de base – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Partie 2</h1>
+        <p class="sous-titre">CSS de base</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart">
+                <p><strong>Objectif :</strong> à la fin de cette partie, votre site a son identité visuelle (couleurs, typographies, espacements) et tous ses éléments sont mis en forme. La mise en page (éléments côte à côte, grilles) viendra à la partie 3 : pour l'instant, <strong>tout reste empilé verticalement, et c'est normal</strong>.</p>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-0"><span>Étape 0 : l'échauffement</span><span class="duree">15 min</span></a></li>
+                    <li><a href="#etape-1"><span>Étape 1 : les couleurs et les typographies</span><span class="duree">30 min</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : les règles générales</span><span class="duree">30 min</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : la mise en forme des éléments</span><span class="duree">2 h 20</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : la vérification et la sauvegarde</span><span class="duree">15 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="fichier">fichier.css</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-0">
+            <h2><span class="numero-etape">Étape 0</span> L'échauffement <span class="duree">15 min, sans internet ni IA</span></h2>
+
+            <p>Fermez tout sauf Visual Studio Code et votre navigateur, puis :</p>
+            <ol>
+                <li>Ajoutez à la FAQ cette nouvelle question : <em>« Le jeu est-il disponible en français ? »</em>, avec la réponse <em>« Consultez la page du jeu sur votre plateforme pour connaître les langues disponibles. »</em></li>
+                <li>Sur une feuille, tentez d'expliquer en une phrase pourquoi vous avez choisi <code class="html">article</code> (ou une autre balise) pour les blocs des pièces.</li>
+            </ol>
+            <p>Si vous avez du mal, c'est le signe qu'une notion de la partie 1 n'est pas acquise : parlez-en à l'enseignant.</p>
+            <details class="solution">
+                <summary>Indications</summary>
+                <ol>
+                    <li>Dans la section FAQ, dupliquez une question existante avec sa réponse, en gardant <strong>exactement les mêmes balises</strong> que les autres (par exemple un <code class="html">article</code> contenant un <code class="html">h3</code> pour la question et un <code class="html">p</code> pour la réponse), puis remplacez les textes. Vérifiez que le niveau de titre est le même que pour les autres questions.</li>
+                    <li>Un bloc de pièce forme un <strong>contenu autonome</strong> : son image, son titre et son texte auraient du sens même publiés seuls, ailleurs que sur cette page. C'est exactement la définition d'<code class="html">article</code>. La <code class="html">section</code> « Les pièces », elle, regroupe ces neuf articles autour d'un même thème. Si vous avez choisi une autre balise, vérifiez qu'elle respecte cette logique.</li>
+                </ol>
+            </details>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> Les couleurs et les typographies <span class="duree">30 min</span></h2>
+
+            <h3>Retrouver les couleurs</h3>
+
+            <p>Le site final utilise une palette précise. Retrouvez-la vous-même à partir des captures fournies.</p>
+            <ol>
+                <li>Ouvrez une capture dans un logiciel de traitement d'image avec lequel vous êtes familier.</li>
+                <li>Prenez l'outil <strong>pipette</strong> et cliquez sur la zone dont vous voulez connaître la couleur. Choisissez une zone <strong>unie</strong>, loin des bords et du texte : sur les contours, les couleurs sont mélangées.</li>
+                <li>Relevez le <strong>code hexadécimal</strong> de la couleur (par exemple <code class="css">#a3b2c4</code>).</li>
+            </ol>
+
+            <p>Les couleurs à retrouver :</p>
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Où la trouver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bleu nuit</td>
+                            <td>Fond de l'en-tête</td>
+                        </tr>
+                        <tr>
+                            <td>Beige clair</td>
+                            <td>Fond de la page</td>
+                        </tr>
+                        <tr>
+                            <td>Beige foncé</td>
+                            <td>Fond d'une section sur deux</td>
+                        </tr>
+                        <tr>
+                            <td>Doré</td>
+                            <td>Fond du bouton « Explorer le manoir »</td>
+                        </tr>
+                        <tr>
+                            <td>Bleu moyen</td>
+                            <td>Texte de la première colonne du tableau</td>
+                        </tr>
+                        <tr>
+                            <td>Couleur du texte</td>
+                            <td>Paragraphes (choisissez une lettre bien épaisse et zoomez)</td>
+                        </tr>
+                        <tr>
+                            <td>Couleur des bordures</td>
+                            <td>Contour des cartes des pièces</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Notez-les en commentaire, en haut de <code class="fichier">style.css</code> :</p>
+
+<pre data-langage="CSS"><code><span class="t-com">/* PALETTE
+   Bleu nuit : #......
+   Beige clair : #......
+   … */</span></code></pre>
+
+            <h3>Utiliser des typographies de Google Fonts</h3>
+
+            <p>Par défaut, un navigateur ne connaît que quelques polices installées sur l'ordinateur. Pour en utiliser d'autres, il faut les <strong>charger</strong> depuis un service comme Google Fonts. Le site final utilise deux polices :</p>
+            <ul>
+                <li><strong>Cinzel</strong> pour les titres, en graisses 500 et 700 ;</li>
+                <li><strong>Source Sans 3</strong> pour le texte, en graisses 400 et 600.</li>
+            </ul>
+
+            <p><strong>1. Récupérer le code.</strong> Sur <a href="https://fonts.google.com/">fonts.google.com</a>, recherchez <em>Cinzel</em>, cliquez sur <strong>Get font</strong>, faites de même pour <em>Source Sans 3</em>, puis cliquez sur <strong>Get embed code</strong>. Dans la colonne de gauche, ne gardez que les graisses demandées. Google Fonts vous donne alors un bloc de trois balises <code class="html">link</code>.</p>
+
+            <p><strong>2. Le coller dans le <code class="html">head</code></strong> de vos deux pages, <strong>avant</strong> le lien vers votre <code class="fichier">style.css</code> :</p>
+
+<pre data-langage="HTML"><code><span class="t-balise">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.googleapis.com"</span><span class="t-balise">&gt;</span>
+<span class="t-balise">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.gstatic.com"</span> <span class="t-attr">crossorigin</span><span class="t-balise">&gt;</span>
+<span class="t-balise">&lt;link</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap"</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span><span class="t-balise">&gt;</span></code></pre>
+
+            <p>Les deux premières lignes accélèrent le chargement. La troisième charge réellement les polices.</p>
+
+            <p><strong>3. Les utiliser dans le CSS</strong> avec la propriété <code class="css">font-family</code> :</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">h1</span> {
+    <span class="t-prop">font-family</span>: <span class="t-val">"Cinzel", Georgia, serif</span>;
+}</code></pre>
+
+            <p>On donne toujours <strong>plusieurs polices, séparées par des virgules</strong> : si la première ne se charge pas (pas de connexion, par exemple), le navigateur essaie la suivante. On termine par une <strong>famille générique</strong> : <code class="css">serif</code> (avec empattements), <code class="css">sans-serif</code> (sans empattements) ou <code class="css">monospace</code> (chasse fixe). Les noms qui contiennent des espaces ou des chiffres s'écrivent entre guillemets.</p>
+
+            <p><strong>4. Choisir la graisse</strong> avec <code class="css">font-weight</code> : <code class="css">400</code> pour le texte normal, <code class="css">600</code> ou <code class="css">700</code> pour le gras. N'utilisez que les graisses que vous avez chargées. Sinon, le navigateur fabrique un faux gras, moins joli.</p>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> Les règles générales <span class="duree">30 min</span></h2>
+
+            <p>Définissez les styles qui s'appliquent à tout le site :</p>
+            <ul>
+                <li>le <code class="html">body</code> : polices, taille et couleur du texte, couleur de fond, marges ;</li>
+                <li>les titres <code class="html">h1</code>, <code class="html">h2</code> et <code class="html">h3</code> : police, taille, couleur ;</li>
+                <li>les liens : couleur, soulignement ;</li>
+                <li>les images : elles ne doivent <strong>jamais dépasser</strong> de leur conteneur (utilisez <code class="css">max-width: 100%</code>).</li>
+            </ul>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> La mise en forme des éléments <span class="duree">2 h 20</span></h2>
+
+            <p>Avancez section par section, en vous aidant des captures du site final :</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Élément</th>
+                            <th>À réaliser</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>En-tête</td>
+                            <td>Fond coloré, nom du site stylé, liens du menu sans puces, ni soulignement, qui changent d'apparence <strong>au survol (texte et bordure inférieure dorés)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Boutons</td>
+                            <td>Le lien « Explorer le manoir » ressemble à un bouton, couleur de fond et du texte qui s'inversent <strong>au survol</strong>, bordure dorée conservée</td>
+                        </tr>
+                        <tr>
+                            <td>Sections</td>
+                            <td>Des espacements intérieurs confortables et <strong>un fond différent une section sur deux</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Encarts (<code class="html">aside</code>)</td>
+                            <td>Fond foncé, texte clair, bordure colorée sur le côté gauche</td>
+                        </tr>
+                        <tr>
+                            <td>Blocs des pièces</td>
+                            <td>Fond, bordure, ombre portée, qui changent <strong>au survol</strong> (bord doré et ombre plus prononcée)</td>
+                        </tr>
+                        <tr>
+                            <td>Tableau</td>
+                            <td>Bordures fusionnées, texte espacé du bord des cellules, ligne d'en-tête colorée, <strong>une ligne sur deux colorée</strong>, <strong>première colonne</strong> mise en avant (mise en forme du texte)</td>
+                        </tr>
+                        <tr>
+                            <td>Actualités</td>
+                            <td>Dates en petites majuscules, d'une couleur différente</td>
+                        </tr>
+                        <tr>
+                            <td>FAQ</td>
+                            <td>Chaque question dans un cadre, bordure gauche dorée</td>
+                        </tr>
+                        <tr>
+                            <td>Pied de page</td>
+                            <td>Fond foncé, listes sans puces, titres dorés, liens clairs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="titre-liste">Les règles :</p>
+            <ol class="regles">
+                <li><strong>On met en forme avec des classes, des balises et des sélecteurs de structure.</strong> Les <code class="html">id</code> servent uniquement aux ancres et, plus tard, au JavaScript.</li>
+                <li><strong>Des noms de classes clairs, en français</strong> : <code class="css">.carte</code>, <code class="css">.encart</code>, <code class="css">.bouton</code>, pas <code class="css">.truc2</code> ou <code class="css">.bleu</code>.</li>
+                <li><strong>Aucun style dans le HTML</strong> : pas d'attribut <code class="html">style="…"</code>, tout est dans <code class="fichier">style.css</code>.</li>
+                <li><strong>Toujours pas de <code class="html">div</code> ni de <code class="html">span</code>.</strong> Si vous pensez en avoir besoin, demandez-vous d'abord si une classe sur une balise existante ne peut pas suffire.</li>
+                <li><strong>Organisez votre feuille de style</strong> dans l'ordre de la page, avec un commentaire qui annonce chaque partie (<code class="css">/* ===== EN-TÊTE ===== */</code>).</li>
+            </ol>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> La vérification et la sauvegarde <span class="duree">15 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Vérifiez les points suivants :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span>Les couleurs relevées sont notées en haut de <code class="fichier">style.css</code> et les deux polices sont chargées sur les deux pages.</span></label></li>
+                        <li><label><input type="checkbox"><span>J'ai utilisé au moins une fois <code class="css">:hover</code>, <code class="css">:nth-child</code>, <code class="css">:first-child</code> et <code class="css">:last-child</code>.</span></label></li>
+                        <li><label><input type="checkbox"><span>J'ai utilisé <code class="css">border</code>, <code class="css">box-shadow</code>, <code class="css">border-collapse</code> et <code class="css">list-style-type</code>.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucun attribut <code class="html">style</code> dans mon HTML.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucune <code class="html">div</code>, aucun <code class="html">span</code>.</span></label></li>
+                        <li><label><input type="checkbox"><span>La page des mentions légales utilise la même feuille de style que la page principale.</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Passez votre feuille de style dans le <a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">validateur CSS du W3C</a> et corrigez les erreurs.</p>
+                </li>
+                <li>
+                    <p>Faites une copie de votre dossier de travail, nommez-la <code class="fichier">partie-2</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt de la partie 2. <strong>Sans ce dépôt, l'enseignant ne pourra pas vous aider sur la partie suivante.</strong></p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>

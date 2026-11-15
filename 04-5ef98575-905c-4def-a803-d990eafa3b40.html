@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Partie 4 – Le responsive – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Partie 4</h1>
+        <p class="sous-titre">Le responsive</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart">
+                <p><strong>Objectif :</strong> à la fin de cette partie, votre site s'affiche correctement sur ordinateur, sur tablette et sur mobile. Sur les écrans étroits, le menu est remplacé par un bouton « burger ». Ce bouton n'ouvrira le menu qu'à la partie 5, avec JavaScript : aujourd'hui, on prépare seulement son apparence.</p>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-0"><span>Étape 0 : l'échauffement</span><span class="duree">15 min</span></a></li>
+                    <li><a href="#rappel"><span>Rappel : les media queries</span><span class="duree">à lire</span></a></li>
+                    <li><a href="#etape-1"><span>Étape 1 : la version tablette</span><span class="duree">1 h</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : la version mobile</span><span class="duree">1 h</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : l'apparence du menu burger</span><span class="duree">40 min</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : la vérification et la sauvegarde</span><span class="duree">30 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="fichier">fichier.css</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-0">
+            <h2><span class="numero-etape">Étape 0</span> L'échauffement <span class="duree">15 min, sans internet ni IA</span></h2>
+
+            <p>Sur votre propre code :</p>
+            <ol>
+                <li>Passez la galerie des pièces à <strong>3 colonnes</strong>. Que devient le bloc vedette ? Reste-t-il des cases vides ? Remettez ensuite 4 colonnes.</li>
+                <li>Dans la section d'accueil, retrouvez la propriété qui centre verticalement le texte et le visuel, et remplacez sa valeur par <code class="css">flex-start</code>. Notez ce qui change, puis annulez.</li>
+            </ol>
+            <details class="solution">
+                <summary>Indications</summary>
+                <ol>
+                    <li>Dans la règle de votre conteneur de galerie, passez <code class="css">grid-template-columns</code> de <code class="css">repeat(4, 1fr)</code> à <code class="css">repeat(3, 1fr)</code>. Le bloc vedette garde ses 2 colonnes et 2 rangées : il occupe 4 cases. Les 8 autres blocs remplissent les 8 cases restantes : 4 + 8 = 12 cases, soit exactement 4 rangées de 3. Il ne reste donc <strong>aucune case vide</strong>.</li>
+                    <li>C'est la propriété <code class="css">align-items: center</code> du conteneur flex de l'accueil (l'élément qui contient le texte et le visuel). Avec <code class="css">flex-start</code>, les deux éléments s'alignent <strong>en haut</strong> du conteneur : le texte, moins haut que l'image, n'est plus centré verticalement et remonte.</li>
+                </ol>
+            </details>
+        </section>
+
+        <section class="etape" id="rappel">
+            <h2><span class="numero-etape">Rappel</span> Les media queries</h2>
+
+            <p>Une media query applique des règles CSS <strong>seulement si une condition est remplie</strong>, le plus souvent une largeur d'écran :</p>
+
+<pre data-langage="CSS"><code><span class="t-com">/* Ces règles s'appliquent uniquement aux écrans de 767px de large ou moins */</span>
+<span class="t-selecteur">@media</span> (<span class="t-prop">max-width</span>: <span class="t-val">767px</span>) {
+    <span class="t-selecteur">.galerie</span> {
+        <span class="t-prop">grid-template-columns</span>: <span class="t-val">1fr</span>;
+    }
+}</code></pre>
+
+            <p class="titre-liste">Trois choses à savoir :</p>
+            <ol class="regles">
+                <li><strong>On ne réécrit que ce qui change.</strong> Dans une media query, inutile de répéter la couleur de fond des cartes ou leur bordure : elles restent les mêmes. On écrit seulement ce qui doit être différent (le nombre de colonnes, la direction d'un flex, une taille de texte…).</li>
+                <li><strong>Les media queries se placent à la fin de la feuille de style.</strong> En CSS, quand deux règles se contredisent, la dernière l'emporte. Placée au début du fichier, votre media query serait écrasée par les règles normales qui la suivent, et rien ne se passerait.</li>
+                <li><strong>La balise <code class="html">meta viewport</code></strong>, que vous avez placée à la partie 1, est indispensable. Sans elle, les téléphones affichent la page comme sur un écran d'ordinateur, en tout petit, et les media queries ne se déclenchent pas. Si vous n'avez pas encore cette ligne dans le <code class="html">head</code> de vos fichiers HTML, ajoutez-la :
+<pre data-langage="HTML"><code><span class="t-balise">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-balise">&gt;</span></code></pre>
+                </li>
+            </ol>
+
+            <p>Le site utilisera <strong>deux points de rupture</strong> :</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Largeur d'écran</th>
+                            <th>Appareil</th>
+                            <th>Media query</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1024 px et plus</td>
+                            <td>Ordinateur</td>
+                            <td>Aucune : ce sont vos règles normales</td>
+                        </tr>
+                        <tr>
+                            <td>de 768 à 1023 px</td>
+                            <td>Tablette</td>
+                            <td><code class="css">@media (max-width: 1023px)</code></td>
+                        </tr>
+                        <tr>
+                            <td>767 px et moins</td>
+                            <td>Mobile</td>
+                            <td><code class="css">@media (max-width: 767px)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="encart encart-clair">
+                <p>Sur mobile, <strong>les deux media queries s'appliquent</strong> (767 px est aussi inférieur à 1023 px). Écrivez donc la media query tablette <strong>avant</strong> la media query mobile : celle-ci n'aura à préciser que ce qui diffère encore de la tablette.</p>
+            </div>
+
+            <p><strong>Pour tester :</strong> réduisez progressivement la largeur de la fenêtre pour voir les changements se déclencher. Vérifiez ensuite le résultat dans le mode responsive du navigateur (via l'inspecteur) en choisissant <strong>un appareil précis</strong> : un iPad pour la tablette, un iPhone pour le mobile.</p>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> La version tablette <span class="duree">1 h</span></h2>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Sur tablette</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>En-tête</td>
+                            <td>Le menu disparaît, le bouton burger apparaît (sera fait à l'étape 3)</td>
+                        </tr>
+                        <tr>
+                            <td>Accueil</td>
+                            <td>Le texte se place <strong>au-dessus</strong> du visuel</td>
+                        </tr>
+                        <tr>
+                            <td>Le jeu</td>
+                            <td>Le contenu principal se place au-dessus de l'encart, tous deux sur toute la largeur</td>
+                        </tr>
+                        <tr>
+                            <td>Galerie</td>
+                            <td><strong>2 colonnes</strong>. Le bloc vedette occupe 2 colonnes mais <strong>une seule rangée</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td>Actualités</td>
+                            <td>La fiche technique se place <strong>sous</strong> la liste des actualités</td>
+                        </tr>
+                        <tr>
+                            <td>Une actualité</td>
+                            <td>Inchangée : l'image reste à gauche du texte</td>
+                        </tr>
+                        <tr>
+                            <td>Pied de page</td>
+                            <td>Inchangé : 3 colonnes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Indice :</strong> pour empiler des éléments placés côte à côte avec Flexbox, il suffit souvent de changer une seule propriété. Pensez aussi à supprimer les largeurs en pourcentage qui n'ont plus de sens une fois les éléments empilés.</p>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> La version mobile <span class="duree">1 h</span></h2>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Sur mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Galerie</td>
+                            <td><strong>1 colonne</strong>. Le bloc vedette redevient un bloc comme les autres.</td>
+                        </tr>
+                        <tr>
+                            <td>Une actualité</td>
+                            <td>L'image se place <strong>au-dessus</strong> du texte, sur toute la largeur</td>
+                        </tr>
+                        <tr>
+                            <td>Pied de page</td>
+                            <td><strong>1 colonne</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Sections</td>
+                            <td>Des marges intérieures réduites pour ne pas gaspiller l'espace</td>
+                        </tr>
+                        <tr>
+                            <td>Titres</td>
+                            <td>Des tailles réduites si besoin</td>
+                        </tr>
+                        <tr>
+                            <td>Tableau</td>
+                            <td>Il reste lisible et <strong>ne dépasse pas</strong> de l'écran</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="encart encart-clair">
+                <p><strong>Le test le plus important :</strong> sur un mobile, la page ne doit <strong>jamais</strong> défiler horizontalement. Si c'est le cas, un élément est trop large. Utilisez l'inspecteur pour le trouver : survolez les éléments dans le code et repérez celui qui dépasse.</p>
+            </div>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> L'apparence du menu burger <span class="duree">40 min</span></h2>
+
+            <p><strong>1. Ajoutez le bouton</strong> dans votre en-tête, entre le nom du site et la navigation :</p>
+
+<pre data-langage="HTML"><code><span class="t-com">&lt;!-- Bouton burger : visible uniquement en version mobile --&gt;</span>
+<span class="t-balise">&lt;button</span> <span class="t-attr">id</span>=<span class="t-val">"burger"</span> <span class="t-attr">class</span>=<span class="t-val">"burger"</span> <span class="t-attr">aria-label</span>=<span class="t-val">"Ouvrir le menu"</span><span class="t-balise">&gt;</span>☰<span class="t-balise">&lt;/button&gt;</span></code></pre>
+
+            <p>Le caractère ☰ dessine les trois barres. L'attribut <code class="html">aria-label</code> décrit le bouton aux personnes qui utilisent un lecteur d'écran, puisque le symbole seul ne veut rien dire pour elles.</p>
+
+            <p><strong>2. Gérez l'affichage selon l'écran :</strong></p>
+            <ul>
+                <li>sur ordinateur, le bouton est <strong>masqué</strong> (<code class="css">display: none</code>) et le menu reste comme avant ;</li>
+                <li>sur tablette et mobile, le bouton <strong>apparaît</strong> et le menu est <strong>masqué</strong>.</li>
+            </ul>
+
+            <p><strong>3. Préparez le menu ouvert.</strong> À la partie 5, un clic sur le bouton ajoutera la classe <code class="css">ouvert</code> au <code class="html">nav</code>. Vous allez donc écrire dès maintenant le style du menu quand il possède cette classe :</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">.menu.ouvert</span> {
+    <span class="t-prop">display</span>: <span class="t-val">block</span>;
+}</code></pre>
+
+            <div class="encart encart-clair">
+                <p>Deux classes collées sans espace (<code class="css">.menu.ouvert</code>) désignent un élément qui possède <strong>les deux classes à la fois</strong>. Avec un espace (<code class="css">.menu .ouvert</code>), ce serait un élément de classe <code class="css">ouvert</code> placé <strong>à l'intérieur</strong> d'un élément de classe <code class="css">menu</code> : ce n'est pas du tout pareil.</p>
+            </div>
+
+            <p>Une fois ouvert, le menu doit s'afficher <strong>sous</strong> l'en-tête, sur toute la largeur, avec les liens les uns sous les autres et un trait de séparation entre chacun (sauf après le dernier).</p>
+
+            <p><strong>Comment tester sans JavaScript ?</strong> Ajoutez temporairement la classe à la main dans votre HTML (<code class="html">&lt;nav id="menu" class="menu ouvert"&gt;</code>), réglez l'apparence du menu ouvert, puis <strong>retirez-la</strong> avant de sauvegarder.</p>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> La vérification et la sauvegarde <span class="duree">30 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Vérifiez les points suivants :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span>Mes media queries sont à la fin de ma feuille de style, la tablette avant le mobile.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le site s'affiche correctement sur un iPad et sur un iPhone dans le mode responsive.</span></label></li>
+                        <li><label><input type="checkbox"><span>Sur mobile, la page ne défile jamais horizontalement.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le bouton burger est masqué sur ordinateur et visible sur tablette et mobile.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le menu ouvert est prêt mais il n'est pas visible, car j'ai bien retiré la classe <code class="css">ouvert</code> de mon HTML.</span></label></li>
+                        <li><label><input type="checkbox"><span>La page des mentions légales s'affiche aussi correctement sur tablette et mobile.</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Passez de nouveau vos fichiers dans les validateurs <a href="https://validator.w3.org/#validate_by_upload">HTML</a> et <a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS</a>.</p>
+                </li>
+                <li>
+                    <p><strong>Sauvegardez :</strong> faites une copie de votre dossier de travail, nommez-la <code class="fichier">partie-4</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt de la partie 4. <strong>Sans ce dépôt, l'enseignant ne pourra pas vous aider sur la partie suivante.</strong></p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>

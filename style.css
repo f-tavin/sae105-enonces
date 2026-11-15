@@ -1,0 +1,755 @@
+/* =========================================================
+   ÉNONCÉS – Projet web Blue Prince
+   Feuille de style commune à toutes les parties.
+   Charte reprise du site Blue Prince et des auto-évaluations.
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: #1d2433;
+    background-color: #f3efe4;
+}
+
+a {
+    color: #1e4a7a;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: #0b1f3a;
+    text-decoration-color: #c8a24a;
+    text-decoration-thickness: 2px;
+}
+
+strong {
+    font-weight: 600;
+    color: #0b1f3a;
+}
+
+
+/* ===== EN-TÊTE ===== */
+
+.entete {
+    padding: 50px 20px 40px 20px;
+    text-align: center;
+    background-color: #0b1f3a;
+    color: #f3efe4;
+    border-bottom: 4px solid #c8a24a;
+}
+
+.projet {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b9c3d3;
+}
+
+.entete h1 {
+    margin: 0;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 40px;
+    line-height: 1.2;
+    color: #f3efe4;
+}
+
+.sous-titre {
+    margin: 8px 0 0 0;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 22px;
+    color: #c8a24a;
+}
+
+
+/* ===== INTRODUCTION : objectif + déroulé ===== */
+
+.introduction {
+    padding: 40px 20px 10px 20px;
+}
+
+.introduction > * {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.encart {
+    padding: 22px 26px;
+    background-color: #0b1f3a;
+    color: #f3efe4;
+    border-left: 6px solid #c8a24a;
+}
+
+.encart p {
+    margin: 0 0 10px 0;
+}
+
+.encart p:last-child {
+    margin-bottom: 0;
+}
+
+.encart strong {
+    color: #c8a24a;
+}
+
+.encart code {
+    background-color: rgba(243, 239, 228, 0.15);
+    color: #f3efe4;
+}
+
+.deroule {
+    margin-top: 30px;
+}
+
+.deroule h2 {
+    margin: 0 0 12px 0;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1e4a7a;
+}
+
+.deroule ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #d5ccb5;
+}
+
+.deroule li {
+    border-bottom: 1px solid #d5ccb5;
+}
+
+.deroule a {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    padding: 9px 4px;
+    color: #1d2433;
+    text-decoration: none;
+}
+
+.deroule a:hover {
+    color: #1e4a7a;
+    background-color: #e7e1d1;
+}
+
+.deroule .duree {
+    flex-shrink: 0;
+}
+
+
+/* ===== ÉTAPES ===== */
+
+.etape {
+    padding: 50px 20px;
+    scroll-margin-top: 0;
+}
+
+/* Une étape sur deux a un fond différent, comme les sections du site */
+.etape:nth-child(even) {
+    background-color: #e7e1d1;
+}
+
+.etape > * {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.etape h2 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 28px;
+    line-height: 1.25;
+    color: #0b1f3a;
+}
+
+.numero-etape {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 4px;
+    background-color: #0b1f3a;
+    color: #c8a24a;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.duree {
+    padding: 2px 12px;
+    border: 1px solid #c8a24a;
+    border-radius: 20px;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7a6a3e;
+    white-space: nowrap;
+}
+
+.etape h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 20px;
+    color: #1e4a7a;
+}
+
+.etape p {
+    margin-top: 0;
+    margin-bottom: 14px;
+}
+
+.etape ul,
+.etape ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding-left: 26px;
+}
+
+.etape li {
+    margin-bottom: 6px;
+}
+
+.etape li::marker {
+    color: #1e4a7a;
+    font-weight: 600;
+}
+
+.titre-liste {
+    margin-top: 26px;
+    font-weight: 600;
+    color: #0b1f3a;
+}
+
+
+/* ===== RÈGLES (liste numérotée mise en avant) ===== */
+
+.regles {
+    list-style-type: none;
+    counter-reset: regle;
+    padding-left: 0 !important;
+}
+
+.regles li {
+    counter-increment: regle;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 12px 16px 12px 58px;
+    background-color: #ffffff;
+    border: 1px solid #d5ccb5;
+}
+
+.regles li::before {
+    content: counter(regle);
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #c8a24a;
+    color: #0b1f3a;
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+/* ===== LISTE DE VÉRIFICATION (cases à cocher, sans JavaScript) ===== */
+
+.verification {
+    list-style-type: none;
+    padding-left: 0 !important;
+}
+
+.verification li {
+    margin-bottom: 8px;
+}
+
+.verification label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background-color: #ffffff;
+    border: 1px solid #d5ccb5;
+    cursor: pointer;
+}
+
+.verification label:hover {
+    border-color: #c8a24a;
+}
+
+.verification input {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 4px 0 0 0;
+    accent-color: #1e4a7a;
+    cursor: pointer;
+}
+
+.verification label:has(input:checked) {
+    color: #6b6b6b;
+    background-color: #f6f3eb;
+}
+
+.verification label:has(input:checked) span {
+    text-decoration: line-through;
+    text-decoration-color: #c8a24a;
+}
+
+
+/* ===== TABLEAUX ===== */
+
+.conteneur-tableau {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 16px;
+}
+
+th,
+td {
+    padding: 11px 14px;
+    border: 1px solid #d5ccb5;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: #0b1f3a;
+    color: #f3efe4;
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f6f3eb;
+}
+
+td:first-child {
+    width: 26%;
+    font-weight: 600;
+    color: #1e4a7a;
+}
+
+
+/* Tableau du déroulé (préambule) : la première colonne ne contient qu'un numéro */
+.tableau-deroule td:first-child {
+    width: auto;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.tableau-deroule td:nth-child(2) {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Un encart placé dans une étape est espacé du texte qui le suit */
+.etape .encart {
+    margin-bottom: 14px;
+}
+
+
+/* Encart clair, pour une mise en garde à l'intérieur d'une étape */
+.encart-clair {
+    background-color: #ffffff;
+    color: #1d2433;
+    border: 1px solid #d5ccb5;
+    border-left: 6px solid #c8a24a;
+}
+
+.encart-clair strong {
+    color: #8a4b0f;
+}
+
+.encart-clair code.css {
+    color: #8a4b0f;
+    background-color: rgba(200, 162, 74, 0.2);
+}
+
+
+/* ===== SCHÉMAS ===== */
+
+.schema {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 24px 20px 16px 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #d5ccb5;
+}
+
+.schema svg {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.schema figcaption {
+    margin-top: 12px;
+    font-size: 15px;
+    font-style: italic;
+    color: #4a5263;
+}
+
+.schema-legende {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+    fill: #1e4a7a;
+}
+
+.schema-code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    font-weight: 700;
+    fill: #0b1f3a;
+}
+
+.schema-numero {
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    fill: #1e4a7a;
+}
+
+
+/* ===== CODE EN LIGNE ===== */
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9em;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background-color: rgba(11, 31, 58, 0.08);
+    color: #0b1f3a;
+    overflow-wrap: anywhere;
+}
+
+/* Dans les tableaux, le code peut passer à la ligne au niveau d'un tiret,
+   mais jamais au milieu d'un mot */
+td code {
+    overflow-wrap: normal;
+}
+
+/* Une couleur par langage, pour aider à les distinguer */
+code.html {
+    color: #1e4a7a;
+    background-color: rgba(30, 74, 122, 0.1);
+}
+
+code.css {
+    color: #8a4b0f;
+    background-color: rgba(200, 162, 74, 0.2);
+}
+
+code.fichier {
+    color: #3a3f4a;
+    background-color: rgba(58, 63, 74, 0.08);
+    font-style: italic;
+}
+
+.legende-code {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #4a5263;
+}
+
+
+/* ===== BLOCS DE CODE ===== */
+
+pre {
+    position: relative;
+    margin: 0 0 18px 0;
+    padding: 34px 20px 18px 20px;
+    overflow-x: auto;
+    background-color: #0b1f3a;
+    color: #f3efe4;
+    border-left: 6px solid #c8a24a;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+pre code {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    font-size: inherit;
+    overflow-wrap: normal;
+}
+
+/* Le langage est indiqué en haut à droite du bloc */
+pre::before {
+    content: attr(data-langage);
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #c8a24a;
+}
+
+/* Coloration syntaxique */
+.t-balise { color: #e9c46a; }
+.t-attr { color: #8fc1e3; }
+.t-val { color: #a8d5a2; }
+.t-selecteur { color: #e9c46a; }
+.t-prop { color: #8fc1e3; }
+.t-com { color: #9aa5b8; font-style: italic; }
+.t-dossier { color: #e9c46a; font-weight: 700; }
+.t-note { color: #9aa5b8; }
+
+
+/* ===== PIED DE PAGE ===== */
+
+.pied {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #0b1f3a;
+    color: #f3efe4;
+}
+
+.pied p {
+    margin: 0;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 767px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    .entete h1 {
+        font-size: 30px;
+    }
+
+    .sous-titre {
+        font-size: 18px;
+    }
+
+    .etape {
+        padding: 36px 16px;
+    }
+
+    .etape h2 {
+        font-size: 22px;
+    }
+
+    pre {
+        font-size: 13px;
+        padding: 32px 14px 14px 14px;
+    }
+
+    td:first-child {
+        width: auto;
+    }
+
+    .tableau-deroule td:nth-child(2) {
+        white-space: normal;
+    }
+}
+
+
+/* Un bloc de code placé dans une règle numérotée est espacé du texte */
+.regles pre {
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+
+/* ===== JAVASCRIPT ===== */
+
+/* Code JavaScript dans le texte */
+code.js {
+    color: #2c6e49;
+    background-color: rgba(44, 110, 73, 0.12);
+}
+
+/* Coloration syntaxique JavaScript dans les blocs de code */
+.t-motcle { color: #f2a3c7; }
+.t-fonction { color: #8fc1e3; }
+.t-nombre { color: #f4b97a; }
+.t-erreur { color: #ff8f8f; font-weight: 700; }
+
+/* Liste à puces dans l'encart de l'objectif */
+.encart ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.encart li {
+    margin-bottom: 4px;
+}
+
+.encart li::marker {
+    color: #c8a24a;
+}
+
+/* Code sans langage précis dans l'encart (nom de classe, par exemple) */
+.encart code:not([class]) {
+    color: #f3efe4;
+}
+
+
+/* ===== INDICATIONS DÉPLIABLES (échauffements) ===== */
+
+/* details/summary : un bloc repliable natif, sans JavaScript */
+.solution {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: 1px solid #d5ccb5;
+    border-left: 6px solid #1e4a7a;
+}
+
+.solution summary {
+    padding: 12px 18px;
+    font-weight: 600;
+    color: #1e4a7a;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+/* On remplace le triangle par défaut par un « + » / « − » */
+.solution summary::-webkit-details-marker {
+    display: none;
+}
+
+.solution summary::before {
+    content: "+";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #1e4a7a;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 22px;
+    text-align: center;
+}
+
+.solution[open] summary::before {
+    content: "−";
+}
+
+.solution summary:hover {
+    background-color: #f6f3eb;
+}
+
+.solution[open] summary {
+    border-bottom: 1px solid #d5ccb5;
+}
+
+.solution ol {
+    margin: 0;
+    padding: 16px 20px 6px 44px;
+}
+
+.solution li {
+    margin-bottom: 12px;
+}
+
+kbd {
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid #b9b0a0;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    background-color: #f6f3eb;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+
+/* ===== TÉLÉCHARGEMENT DES RESSOURCES (préambule) ===== */
+
+.telechargement {
+    max-width: 420px !important;
+    margin-top: 10px;
+    margin-bottom: 24px;
+    padding: 30px 24px;
+    text-align: center;
+    background-color: #0b1f3a;
+    border: 1px solid #0b1f3a;
+    border-bottom: 6px solid #c8a24a;
+    box-shadow: 0 8px 20px rgba(11, 31, 58, 0.18);
+}
+
+.icone-archive {
+    width: 72px;
+    height: 72px;
+}
+
+.etape .nom-archive {
+    margin: 6px 0 18px 0;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f3efe4;
+}
+
+.bouton-telechargement {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid #c8a24a;
+    border-radius: 4px;
+    background-color: #c8a24a;
+    color: #0b1f3a;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Petite flèche vers le bas devant le texte du bouton */
+.bouton-telechargement::before {
+    content: "↓";
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.bouton-telechargement:hover {
+    background-color: transparent;
+    color: #c8a24a;
+    text-decoration: none;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Partie 1 – La structure HTML – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Partie 1</h1>
+        <p class="sous-titre">La structure HTML</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart">
+                <p><strong>Objectif :</strong> à la fin de cette partie, toutes les pages du site existent avec leur contenu complet, balisé de façon sémantique, <strong>sans aucun CSS</strong>.</p>
+                <p><strong>Ce que vous avez à disposition :</strong> des captures du site final (ordinateur et mobile), les textes au format .txt et le dossier d'images.</p>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-1"><span>Étape 1 : le zoning</span><span class="duree">30 min</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : l'arborescence et le squelette</span><span class="duree">20 min</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : le balisage du contenu</span><span class="duree">2 h</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : les mentions légales</span><span class="duree">20 min</span></a></li>
+                    <li><a href="#etape-5"><span>Étape 5 : la vérification et la sauvegarde</span><span class="duree">30 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="fichier">fichier.html</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> Le zoning <span class="duree">30 min</span></h2>
+
+            <p>Sur la capture du site en version ordinateur (dossier <code class="fichier">Captures du site terminé</code> de l'archive des ressources), distinguez chaque zone et écrivez la balise HTML qui lui correspond : <code class="html">header</code>, <code class="html">nav</code>, <code class="html">main</code>, <code class="html">section</code>, <code class="html">article</code>, <code class="html">aside</code>, <code class="html">footer</code>, <code class="html">table</code>…</p>
+
+            <p>Posez-vous la question pour chaque bloc : est-ce un contenu autonome qui aurait du sens seul (<code class="html">article</code>) ? Une partie thématique de la page (<code class="html">section</code>) ? Un contenu secondaire, en marge du sujet principal (<code class="html">aside</code>) ? etc.</p>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> L'arborescence et le squelette <span class="duree">20 min</span></h2>
+
+            <p>Créez exactement cette arborescence :</p>
+
+<pre data-langage="Arborescence"><code><span class="t-dossier">dossier_de_travail/</span>
+├── index.html
+├── mentions-legales.html
+├── <span class="t-dossier">css/</span>style.css        <span class="t-note">← (vide pour l'instant)</span>
+├── <span class="t-dossier">js/</span>script.js         <span class="t-note">← (vide pour l'instant)</span>
+└── <span class="t-dossier">images/</span>              <span class="t-note">← (le dossier fourni)</span></code></pre>
+
+            <p>Dans <code class="fichier">index.html</code>, écrivez la structure de base habituelle : doctype, langue française, encodage, meta, titre de la page, lien vers la feuille de style et le script.</p>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> Le balisage du contenu <span class="duree">2 h</span></h2>
+
+            <p>Copiez les textes fournis et balisez-les, section par section, dans l'ordre de la page. Pour chaque section, voici ce qui est attendu :</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Contraintes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>En-tête</td>
+                            <td>Nom du site cliquable + navigation sous forme de <strong>liste de liens</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Accueil</td>
+                            <td>Le logo <strong>dans</strong> le titre principal, l'accroche, un lien vers la section Pièces et l'image</td>
+                        </tr>
+                        <tr>
+                            <td>Le jeu</td>
+                            <td>Un contenu principal incluant une <strong>liste numérotée</strong>, et un contenu secondaire « Le saviez-vous ? » complet (le JavaScript permettant d'afficher/cacher viendra plus tard)</td>
+                        </tr>
+                        <tr>
+                            <td>Les pièces</td>
+                            <td>9 blocs, chacun avec image, titre et texte</td>
+                        </tr>
+                        <tr>
+                            <td>Captures</td>
+                            <td>5 images, chacune avec sa <strong>légende</strong>. On utilisera les balises <code class="html">figure</code> et <code class="html">figcaption</code> (voir plus bas)</td>
+                        </tr>
+                        <tr>
+                            <td>Configuration</td>
+                            <td>Un <strong>tableau</strong> avec une ligne d'en-tête. On pensera à utiliser <code class="html">thead</code> et <code class="html">tbody</code></td>
+                        </tr>
+                        <tr>
+                            <td>Actualités</td>
+                            <td>3 actualités datées (image + titre + date + texte) + la fiche technique</td>
+                        </tr>
+                        <tr>
+                            <td>FAQ</td>
+                            <td>5 questions (titres) avec leur réponse (textes)</td>
+                        </tr>
+                        <tr>
+                            <td>Pied de page</td>
+                            <td>Trois blocs, dont un lien vers les mentions légales. Les autres liens sont fictifs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="titre-liste">Les règles :</p>
+            <ol class="regles">
+                <li><strong>Aucune <code class="html">div</code> ni <code class="html">span</code> aujourd'hui.</strong> Vous en ajouterez plus tard, uniquement quand la mise en page l'exigera, et vous devrez pouvoir dire pourquoi.</li>
+                <li><strong>Une seule <code class="html">h1</code> par page</strong>, et pas de saut de niveau (pas de <code class="html">h4</code> directement sous un <code class="html">h2</code>).</li>
+                <li><strong>Chaque image a un attribut <code class="html">alt</code></strong> qui décrit ce qu'elle montre.</li>
+                <li><strong>Les liens du menu fonctionnent</strong> : chaque lien mène à sa section grâce à une ancre (<code class="html">href="#pieces"</code> → <code class="html">id="pieces"</code>).</li>
+                <li><strong>Indentez votre code.</strong> Chaque balise ouverte à l'intérieur d'une autre est décalée d'un cran (2 ou 4 espaces ou une tabulation).</li>
+            </ol>
+
+            <p class="titre-liste">Nouvelles balises utiles (voir sur <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element">MDN</a>) :</p>
+            <ul>
+                <li><code class="html">figure</code> et <code class="html">figcaption</code> : une image accompagnée de sa légende.</li>
+                <li><code class="html">time</code> : une date lisible par les machines, par exemple <code class="html">&lt;time datetime="2025-04-10"&gt;10 avril 2025&lt;/time&gt;</code>.</li>
+            </ul>
+
+            <p>Les boutons (menu burger, carrousel, « Révéler un secret ») seront ajoutés pendant les parties consacrées au JavaScript.</p>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> Les mentions légales <span class="duree">20 min</span></h2>
+
+            <p>Créez une page simple : même en-tête mais sans le menu, le contenu des mentions, le pied de page épuré, et un lien de retour vers l'accueil.</p>
+        </section>
+
+        <section class="etape" id="etape-5">
+            <h2><span class="numero-etape">Étape 5</span> La vérification et la sauvegarde <span class="duree">30 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Passez vos deux pages dans le <a href="https://validator.w3.org/#validate_by_upload">validateur du W3C</a> et corrigez toutes les erreurs.</p>
+                </li>
+                <li>
+                    <p>Vérifiez les points suivants :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span>Toutes les sections sont présentes et dans l'ordre.</span></label></li>
+                        <li><label><input type="checkbox"><span>Tous les liens du menu mènent à la bonne section.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucune <code class="html">div</code>, aucun <code class="html">span</code>.</span></label></li>
+                        <li><label><input type="checkbox"><span>Une seule <code class="html">h1</code> par page, pas de saut de niveau de titre.</span></label></li>
+                        <li><label><input type="checkbox"><span>Toutes les images s'affichent et ont un <code class="html">alt</code> pertinent.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le validateur n'indique aucune erreur.</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Faites une copie de votre dossier de travail, nommez-la <code class="fichier">partie-1</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt de la partie 1. <strong>Sans ce dépôt, l'enseignant ne pourra pas vous aider sur la partie suivante.</strong></p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Partie 5 – JavaScript, premières interactions – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Partie 5</h1>
+        <p class="sous-titre">JavaScript, premières interactions</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart">
+                <p><strong>Objectif :</strong> à la fin de cette partie, trois éléments de votre site réagissent au clic :</p>
+                <ul>
+                    <li>le bouton « Révéler un secret » affiche et masque un texte ;</li>
+                    <li>le bouton burger ouvre et ferme le menu sur mobile ;</li>
+                    <li>les questions de la FAQ affichent et masquent leur réponse.</li>
+                </ul>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-0"><span>Étape 0 : l'échauffement</span><span class="duree">15 min</span></a></li>
+                    <li><a href="#rappel"><span>Rappel : interactions, querySelectorAll et forEach</span><span class="duree">à lire</span></a></li>
+                    <li><a href="#etape-1"><span>Étape 1 : préparer les états dans le CSS</span><span class="duree">25 min</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : le secret</span><span class="duree">30 min</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : le menu burger</span><span class="duree">50 min</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : la FAQ</span><span class="duree">50 min</span></a></li>
+                    <li><a href="#etape-5"><span>Étape 5 : les défis bonus</span><span class="duree">s'il reste du temps</span></a></li>
+                    <li><a href="#etape-6"><span>Étape 6 : la vérification et la sauvegarde</span><span class="duree">20 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="js">querySelector</code> JavaScript</span>
+                <span><code class="fichier">script.js</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-0">
+            <h2><span class="numero-etape">Étape 0</span> L'échauffement <span class="duree">15 min, sans internet ni IA</span></h2>
+
+            <p>Sur votre propre code :</p>
+            <ol>
+                <li>Déplacez le point de rupture mobile de 767 px à <strong>600 px</strong>. Vérifiez à quelle largeur la galerie passe maintenant à une colonne, puis remettez 767 px.</li>
+                <li>En lisant votre code et sans regarder le site dans le navigateur, tentez de vous rappeler ce qui change sur la page quand la largeur de l'écran passe sous 1024 px.</li>
+            </ol>
+            <details class="solution">
+                <summary>Indications</summary>
+                <ol>
+                    <li>Modifiez la condition de votre media query mobile : <code class="css">@media (max-width: 600px)</code>. La galerie ne passe plus à une colonne qu'en dessous de 600 px ; entre 601 et 767 px, ce sont les règles de la tablette qui s'appliquent, donc elle reste sur 2 colonnes. N'oubliez pas de remettre 767 px.</li>
+                    <li>Relisez le contenu de votre media query <code class="css">@media (max-width: 1023px)</code> : chaque règle qu'elle contient correspond à un changement. Vous devriez retrouver le bouton burger qui apparaît et le menu qui disparaît, le texte de l'accueil au-dessus du visuel, l'encart « Le saviez-vous ? » sous le contenu principal, la galerie sur 2 colonnes avec le bloc vedette sur une seule rangée, et la fiche technique sous les actualités. Comparez ensuite avec le site dans le navigateur.</li>
+                </ol>
+            </details>
+        </section>
+
+        <section class="etape" id="rappel">
+            <h2><span class="numero-etape">Rappel</span> Le principe de toutes les interactions de cette partie</h2>
+
+            <p>Toutes les interactions de cette partie suivent <strong>les mêmes trois étapes</strong> :</p>
+            <ol class="regles">
+                <li><strong>Sélectionner</strong> l'élément qui réagit au clic et celui qui doit changer (<code class="js">querySelector</code>) ;</li>
+                <li><strong>Écouter</strong> le clic (<code class="js">addEventListener</code>) ;</li>
+                <li><strong>Agir</strong> en ajoutant ou en retirant une <strong>classe</strong> (<code class="js">classList</code>).</li>
+            </ol>
+
+<pre data-langage="JavaScript"><code><span class="t-com">// 1. Sélectionner</span>
+<span class="t-motcle">const</span> bouton = document.<span class="t-fonction">querySelector</span>(<span class="t-val">"#mon-bouton"</span>);
+<span class="t-motcle">const</span> boite = document.<span class="t-fonction">querySelector</span>(<span class="t-val">"#ma-boite"</span>);
+
+<span class="t-com">// 2. Écouter</span>
+bouton.<span class="t-fonction">addEventListener</span>(<span class="t-val">"click"</span>, <span class="t-motcle">function</span> () {
+    <span class="t-com">// 3. Agir</span>
+    boite.classList.<span class="t-fonction">toggle</span>(<span class="t-val">"visible"</span>);
+});</code></pre>
+
+            <div class="encart">
+                <p><strong>JavaScript ne s'occupe pas de l'apparence.</strong> Il se contente d'ajouter ou de retirer une classe. C'est le CSS qui décide à quoi ressemble l'élément avec ou sans cette classe. Vous l'avez déjà vu à la partie 4 avec le menu : en ajoutant la classe <code>ouvert</code> à la main, le menu s'affichait. Aujourd'hui, c'est JavaScript qui va l'ajouter à votre place.</p>
+            </div>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Méthode</th>
+                            <th>Effet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="js">classList.add("x")</code></td>
+                            <td>Ajoute la classe <code class="css">x</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js">classList.remove("x")</code></td>
+                            <td>Retire la classe <code class="css">x</code></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js">classList.toggle("x")</code></td>
+                            <td>Ajoute la classe si elle est absente, la retire si elle est présente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Quand ça ne marche pas : la console</h3>
+
+            <p>Ouvrez l'inspecteur dans le navigateur et l'onglet <strong>Console</strong>. Si votre script contient une erreur, elle s'y affiche en rouge, avec le numéro de la ligne. L'erreur la plus fréquente :</p>
+
+<pre data-langage="Console"><code><span class="t-erreur">Uncaught TypeError: bouton is null</span></code></pre>
+
+            <p>Elle signifie que <code class="js">querySelector</code> n'a <strong>rien trouvé</strong>. Vérifiez trois choses :</p>
+            <ul>
+                <li>le sélecteur est-il bien écrit (<code class="css">#</code> pour un <code class="html">id</code>, <code class="css">.</code> pour une classe) ?</li>
+                <li>l'élément existe-t-il dans votre HTML, avec exactement le même nom ?</li>
+                <li>votre balise <code class="html">script</code> a-t-elle l'attribut <strong><code class="html">defer</code></strong> ? Sans lui, le script s'exécute <strong>avant</strong> que le navigateur ait lu tout le HTML : les éléments n'existent pas encore.</li>
+            </ul>
+
+<pre data-langage="HTML"><code><span class="t-balise">&lt;script</span> <span class="t-attr">src</span>=<span class="t-val">"js/script.js"</span> <span class="t-attr">defer</span><span class="t-balise">&gt;&lt;/script&gt;</span></code></pre>
+
+            <p>Pour savoir si un morceau de code s'exécute, ajoutez-y temporairement <code class="js">console.log("clic !");</code> et regardez si le message apparaît dans la console. Pensez bien à retirer cette commande par la suite !</p>
+
+            <h3>Plusieurs éléments à la fois : querySelectorAll et forEach</h3>
+
+            <p><code class="js">querySelector</code> renvoie <strong>le premier</strong> élément trouvé. Pour récupérer <strong>tous</strong> les éléments qui correspondent à un sélecteur, on utilise <code class="js">querySelectorAll</code> : il renvoie <strong>une liste</strong> d'éléments, même s'il n'en trouve qu'un seul.</p>
+
+<pre data-langage="JavaScript"><code><span class="t-com">// Une liste qui contient toutes les cartes des pièces</span>
+<span class="t-motcle">const</span> cartes = document.<span class="t-fonction">querySelectorAll</span>(<span class="t-val">".carte"</span>);</code></pre>
+
+            <div class="encart encart-clair">
+                <p><strong>Attention :</strong> une liste n'est pas un élément. On ne peut pas lui appliquer directement <code class="js">classList</code> ou <code class="js">addEventListener</code> : <code class="js">cartes.addEventListener(…)</code> provoque une erreur dans la console. Il faut agir sur <strong>chaque élément</strong> de la liste, un par un.</p>
+            </div>
+
+            <p>Plutôt que d'écrire une ligne par élément, on demande à la liste de se parcourir elle-même avec <code class="js">forEach</code> (« pour chaque ») : la fonction placée entre parenthèses est exécutée <strong>une fois pour chaque élément</strong>, et son paramètre (ici <code class="js">carte</code>) désigne à chaque fois l'élément en cours.</p>
+
+<pre data-langage="JavaScript"><code><span class="t-com">// Pour chaque carte de la liste, on ajoute la classe "visible"</span>
+cartes.<span class="t-fonction">forEach</span>(<span class="t-motcle">function</span> (carte) {
+    carte.classList.<span class="t-fonction">add</span>(<span class="t-val">"visible"</span>);
+});</code></pre>
+
+            <p>C'est exactement ce que ferait une boucle <code class="js">for</code>, en plus court et sans compteur à gérer :</p>
+
+<pre data-langage="JavaScript"><code><span class="t-com">// La même chose avec une boucle for</span>
+<span class="t-motcle">for</span> (<span class="t-motcle">let</span> i = <span class="t-nombre">0</span>; i &lt; cartes.length; i++) {
+    cartes[i].classList.<span class="t-fonction">add</span>(<span class="t-val">"visible"</span>);
+}</code></pre>
+
+            <p>Pour mettre un <strong>écouteur sur chaque élément</strong>, il suffit de placer le <code class="js">addEventListener</code> à l'intérieur du <code class="js">forEach</code>. C'est ce que vous ferez aux étapes 3 et 4.</p>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> Préparer les états dans le CSS <span class="duree">25 min</span></h2>
+
+            <p>Avant d'écrire la moindre ligne de JavaScript, préparez dans le CSS l'apparence <strong>avec</strong> et <strong>sans</strong> la classe, comme nous l'avons fait lors de la partie précédente pour le menu :</p>
+
+            <div class="conteneur-tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Élément</th>
+                            <th>Par défaut</th>
+                            <th>Avec la classe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Le texte secret</td>
+                            <td>Masqué</td>
+                            <td><code class="css">.visible</code> : affiché</td>
+                        </tr>
+                        <tr>
+                            <td>Les réponses de la FAQ</td>
+                            <td>Masquées</td>
+                            <td><code class="css">.ouvert</code> <strong>sur l'article de la question</strong> : réponse affichée, et une bordure colorée sur le côté gauche de l'article</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>Pour la FAQ, la classe est ajoutée au <strong>parent</strong> (l'article), mais c'est l'<strong>enfant</strong> (la réponse) qui doit apparaître. Le sélecteur s'écrit donc :</p>
+
+<pre data-langage="CSS"><code><span class="t-selecteur">.faq-item.ouvert .faq-reponse</span> {
+    <span class="t-prop">display</span>: <span class="t-val">block</span>;
+}</code></pre>
+
+            <p>Lisez-le de droite à gauche : « la réponse qui se trouve dans un article de la FAQ qui a la classe <code class="css">ouvert</code> ».</p>
+
+            <p><strong>Testez vos états comme à la partie 4</strong>, en ajoutant les classes à la main dans le HTML, puis retirez-les.</p>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> Le secret <span class="duree">30 min</span></h2>
+
+            <ol>
+                <li>Ajoutez dans l'encart « Le saviez-vous ? » un bouton « Révéler un secret », juste au-dessus du paragraphe secret. Donnez un <code class="html">id</code> à chacun.</li>
+                <li>Dans <code class="fichier">script.js</code>, faites en sorte qu'un clic sur le bouton affiche le secret, et qu'un second clic le masque.</li>
+            </ol>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> Le menu burger <span class="duree">50 min</span></h2>
+
+            <ol>
+                <li>Un clic sur le bouton burger ouvre le menu. Un second clic le referme.</li>
+                <li><strong>Problème :</strong> sur mobile, quand on clique sur un lien du menu, la page descend jusqu'à la section… mais le menu reste ouvert et cache le contenu. Corrigez ce problème : <strong>un clic sur n'importe quel lien du menu doit refermer le menu.</strong></li>
+            </ol>
+
+            <div class="encart encart-clair">
+                <p><strong>Indice :</strong> récupérez tous les liens du menu avec <code class="js">querySelectorAll</code>, puis parcourez la liste avec <code class="js">forEach</code> pour mettre un écouteur sur <strong>chaque</strong> lien (voir le <a href="#rappel">rappel</a>).</p>
+            </div>
+
+<pre data-langage="JavaScript"><code><span class="t-motcle">const</span> liens = document.<span class="t-fonction">querySelectorAll</span>(<span class="t-val">"#menu a"</span>);
+
+liens.<span class="t-fonction">forEach</span>(<span class="t-motcle">function</span> (lien) {
+    lien.<span class="t-fonction">addEventListener</span>(<span class="t-val">"click"</span>, <span class="t-motcle">function</span> () {
+        <span class="t-com">// que doit-il se passer ici ?</span>
+    });
+});</code></pre>
+
+            <p>Faut-il utiliser <code class="js">toggle</code> ou une autre méthode ici ? Réfléchissez à ce qui se passerait avec <code class="js">toggle</code> si le menu était déjà fermé.</p>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> La FAQ <span class="duree">50 min</span></h2>
+
+            <p>Un clic sur une question affiche sa réponse. Un second clic la masque. Chaque question fonctionne <strong>indépendamment</strong> des autres.</p>
+
+            <p>Vous avez tous les éléments : c'est le même principe que les liens du menu, appliqué cette fois aux articles de la FAQ.</p>
+        </section>
+
+        <section class="etape" id="etape-5">
+            <h2><span class="numero-etape">Étape 5</span> Les défis bonus <span class="duree">s'il vous reste du temps</span></h2>
+
+            <h3>Défi 1 : une seule réponse à la fois</h3>
+            <p>Quand on ouvre une question de la FAQ, toutes les autres se referment. <em>Indice : avant d'ouvrir la question cliquée, parcourez toutes les questions pour leur retirer la classe.</em> Attention, cliquer sur une question déjà ouverte doit toujours la refermer.</p>
+
+            <h3>Défi 2 : un bouton qui change de texte</h3>
+            <p>Le bouton affiche « Révéler un secret » quand le secret est masqué, et « Masquer le secret » quand il est visible. Vous aurez besoin de deux nouveautés :</p>
+            <ul>
+                <li><code class="js">element.classList.contains("x")</code> renvoie <code class="js">true</code> si l'élément a la classe <code class="css">x</code>, sinon <code class="js">false</code> ;</li>
+                <li><code class="js">element.textContent = "…"</code> remplace le texte d'un élément.</li>
+            </ul>
+
+            <h3>Défi 3 : un burger qui se transforme</h3>
+            <p>Quand le menu est ouvert, le bouton affiche ✕ au lieu de ☰. Même principe que le défi 2.</p>
+        </section>
+
+        <section class="etape" id="etape-6">
+            <h2><span class="numero-etape">Étape 6</span> La vérification et la sauvegarde <span class="duree">20 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Vérifiez les points suivants :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span>Le secret s'affiche et se masque.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le burger ouvre et ferme le menu, et un clic sur un lien referme le menu.</span></label></li>
+                        <li><label><input type="checkbox"><span>Chaque question de la FAQ s'ouvre et se ferme indépendamment des autres.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucune erreur rouge dans la console.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucun attribut <code class="html">onclick</code> dans mon HTML : tout le JavaScript est dans <code class="fichier">script.js</code>.</span></label></li>
+                        <li><label><input type="checkbox"><span>Mon script est commenté : un commentaire annonce chaque fonctionnalité.</span></label></li>
+                        <li><label><input type="checkbox"><span>Mes noms de variables sont explicites et en français (<code class="js">boutonSecret</code>, pas <code class="js">b</code> ou <code class="js">x</code>).</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Passez de nouveau vos fichiers dans les validateurs <a href="https://validator.w3.org/#validate_by_upload">HTML</a> et <a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS</a>.</p>
+                </li>
+                <li>
+                    <p>Faites une copie de votre dossier de travail, nommez-la <code class="fichier">partie-5</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt de la partie 5. <strong>Sans ce dépôt, l'enseignant ne pourra pas vous aider sur la partie suivante.</strong></p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>

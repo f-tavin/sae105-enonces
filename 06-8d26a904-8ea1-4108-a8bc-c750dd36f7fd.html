@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Bonus – Le carrousel – Projet Blue Prince</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="entete">
+        <p class="projet">Projet web Blue Prince</p>
+        <h1>Bonus</h1>
+        <p class="sous-titre">Le carrousel</p>
+    </header>
+
+    <main>
+
+        <section class="introduction">
+            <div class="encart encart-clair">
+                <p><strong>Cette partie est un bonus.</strong> Commencez-la seulement si votre site est terminé et fonctionne jusqu'à la partie 5 incluse, et qu'il vous reste du temps : un site complet et propre vaut mieux qu'un carrousel posé sur un site inachevé.</p>
+            </div>
+
+            <div class="encart">
+                <p><strong>Objectif :</strong> transformer la section des captures en carrousel. Une seule image est visible à la fois, deux boutons permettent de passer à la suivante ou à la précédente, et un compteur indique la position (« 3 / 5 »).</p>
+            </div>
+
+            <nav class="deroule" aria-label="Déroulé de la partie">
+                <h2>Au programme</h2>
+                <ol>
+                    <li><a href="#etape-1"><span>Étape 1 : la structure HTML</span><span class="duree">20 min</span></a></li>
+                    <li><a href="#etape-2"><span>Étape 2 : le CSS</span><span class="duree">30 min</span></a></li>
+                    <li><a href="#etape-3"><span>Étape 3 : le JavaScript</span><span class="duree">2 h</span></a></li>
+                    <li><a href="#etape-4"><span>Étape 4 : les finitions et la sauvegarde</span><span class="duree">20 min</span></a></li>
+                </ol>
+            </nav>
+
+            <p class="legende-code">
+                <span><code class="html">balise</code> HTML</span>
+                <span><code class="css">propriété</code> CSS</span>
+                <span><code class="js">querySelector</code> JavaScript</span>
+                <span><code class="fichier">script.js</code> fichier ou dossier</span>
+            </p>
+        </section>
+
+        <section class="etape" id="etape-1">
+            <h2><span class="numero-etape">Étape 1</span> La structure HTML <span class="duree">20 min</span></h2>
+
+            <p>Réorganisez la section des captures selon ce schéma :</p>
+
+<pre data-langage="Structure"><code><span class="t-balise">section#captures</span>
+├── <span class="t-balise">h2</span>
+├── <span class="t-balise">div.carrousel</span>               <span class="t-note">← conteneur flex (n'oubliez pas son commentaire)</span>
+│   ├── <span class="t-balise">button#precedent</span>        <span class="t-note">← ❮</span>
+│   ├── <span class="t-balise">ul.diapos</span>               <span class="t-note">← la liste des images</span>
+│   │   ├── <span class="t-balise">li.diapo.active</span>     <span class="t-note">← la première diapositive est active</span>
+│   │   │   └── <span class="t-balise">figure</span> (<span class="t-balise">img</span> + <span class="t-balise">figcaption</span>)
+│   │   ├── <span class="t-balise">li.diapo</span>
+│   │   └── … (5 diapositives au total)
+│   └── <span class="t-balise">button#suivant</span>          <span class="t-note">← ❯</span>
+└── <span class="t-balise">p#compteur</span>                  <span class="t-note">← « 1 / 5 »</span></code></pre>
+
+            <p>Les caractères ❮ et ❯ servent de flèches. Comme pour le burger, ajoutez à chaque bouton un <code class="html">aria-label</code> qui décrit son action (« Image précédente », « Image suivante »).</p>
+        </section>
+
+        <section class="etape" id="etape-2">
+            <h2><span class="numero-etape">Étape 2</span> Le CSS <span class="duree">30 min</span></h2>
+
+            <ol>
+                <li><strong>Toutes les diapositives sont masquées</strong>, sauf celle qui a la classe <code class="css">active</code>. Testez en déplaçant la classe <code class="css">active</code> à la main d'une diapositive à l'autre dans le HTML.</li>
+                <li><strong>Le carrousel est un conteneur flex</strong> : les boutons de part et d'autre, l'image au centre, le tout centré verticalement. Pour que la liste des images prenne toute la place laissée par les boutons, donnez-lui <code class="css">flex: 1</code> : cette propriété demande à un élément d'occuper tout l'espace restant dans son conteneur flex.</li>
+                <li><strong>Les boutons sont ronds</strong>, aux couleurs du site, et changent d'apparence au survol (pensez à utiliser <code class="css">border-radius</code> pour obtenir la forme circulaire).</li>
+            </ol>
+        </section>
+
+        <section class="etape" id="etape-3">
+            <h2><span class="numero-etape">Étape 3</span> Le JavaScript <span class="duree">2 h</span></h2>
+
+            <div class="encart encart-clair">
+                <p>Le carrousel est plus complexe que les interactions de la partie 5. Avancez <strong>étape par étape</strong>, et testez à chaque étape avant de passer à la suivante.</p>
+            </div>
+
+            <h3>a. Capturer les éléments du DOM</h3>
+            <p>Depuis le JavaScript, utilisez <code class="js">querySelectorAll</code> pour capturer les diapositives, et <code class="js">querySelector</code> ou <code class="js">getElementById</code> pour les deux boutons et le compteur.</p>
+
+            <h3>b. Retenir la position</h3>
+            <p>Le carrousel doit se souvenir de la diapositive affichée. On utilise pour cela une variable qui contient son <strong>numéro</strong> :</p>
+
+<pre data-langage="JavaScript"><code><span class="t-com">// Numéro de la diapositive affichée (la première porte le numéro 0)</span>
+<span class="t-motcle">let</span> indexActuel = <span class="t-nombre">0</span>;</code></pre>
+
+            <p>Les éléments d'une liste sont numérotés <strong>à partir de 0</strong> : la première diapositive est <code class="js">diapos[0]</code>, la cinquième est <code class="js">diapos[4]</code>. On utilise <code class="js">let</code> et pas <code class="js">const</code>, parce que cette valeur va changer à chaque clic.</p>
+
+            <h3>c. Afficher la bonne diapositive</h3>
+            <p>Écrivez une <strong>fonction</strong> <code class="js">afficherDiapo()</code> qui :</p>
+            <ol>
+                <li>retire la classe <code class="css">active</code> de <strong>toutes</strong> les diapositives (faire une boucle) ;</li>
+                <li>ajoute la classe <code class="css">active</code> à la diapositive numéro <code class="js">indexActuel</code>.</li>
+            </ol>
+            <p>Pourquoi une fonction ? Parce que les deux boutons en auront besoin : on l'écrit une fois et on l'appellera aux deux endroits.</p>
+
+            <h3>d. Le bouton « suivant »</h3>
+            <p>Au clic sur le bouton « suivant » :</p>
+            <ol>
+                <li>on augmente <code class="js">indexActuel</code> de 1 ;</li>
+                <li>on appelle <code class="js">afficherDiapo()</code>.</li>
+            </ol>
+            <p>Testez : cliquez plusieurs fois. <strong>Que se passe-t-il après la cinquième image ?</strong> Ouvrez la console pour lire l'erreur et essayez de la comprendre avant de lire la suite.</p>
+
+            <h3>e. Revenir au début</h3>
+            <p>La diapositive numéro 5 n'existe pas : la dernière est la numéro 4. Ajoutez une <strong>condition</strong> : si <code class="js">indexActuel</code> dépasse le numéro de la dernière diapositive, on revient à 0.</p>
+            <p>Ne tapez pas le nombre 5 en dur dans votre code : utilisez <code class="js">diapos.length</code>, qui donne le nombre de diapositives. Ainsi, votre carrousel continuera de fonctionner si on ajoute ou retire une image.</p>
+
+            <h3>f. Le bouton « précédent »</h3>
+            <p>Même logique, dans l'autre sens. N'oubliez pas de gérer le cas où l'on clique sur « précédent » depuis la première image.</p>
+
+            <h3>g. Le compteur</h3>
+            <p>Dans <code class="js">afficherDiapo()</code>, mettez à jour le texte du compteur avec <code class="js">textContent</code>. <strong>Attention :</strong> le compteur doit afficher « 1 / 5 » quand <code class="js">indexActuel</code> vaut 0.</p>
+        </section>
+
+        <section class="etape" id="etape-4">
+            <h2><span class="numero-etape">Étape 4</span> Les finitions et la sauvegarde <span class="duree">20 min</span></h2>
+
+            <ol>
+                <li>
+                    <p>Repassez sur tout votre site :</p>
+                    <ul class="verification">
+                        <li><label><input type="checkbox"><span>Le carrousel fonctionne dans les deux sens, y compris en boucle.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le compteur affiche toujours le bon numéro.</span></label></li>
+                        <li><label><input type="checkbox"><span>Le carrousel s'affiche correctement sur mobile.</span></label></li>
+                        <li><label><input type="checkbox"><span>Aucune erreur dans la console, et aucun <code class="js">console.log</code> de test oublié.</span></label></li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Passez de nouveau vos fichiers dans les validateurs <a href="https://validator.w3.org/#validate_by_upload">HTML</a> et <a href="https://jigsaw.w3.org/css-validator/#validate_by_upload">CSS</a>.</p>
+                </li>
+                <li>
+                    <p>Faites une copie de votre dossier de travail, nommez-la <code class="fichier">bonus</code> et déposez-la dans vos Documents sur le serveur de l'IUT.</p>
+                </li>
+                <li>
+                    <p><strong>Déposez votre travail sur Moodle :</strong> compressez votre dossier de travail en archive <code class="fichier">.zip</code> et déposez-la dans l'espace de dépôt du bonus. C'est ce dépôt qui permet à l'enseignant de voir votre carrousel.</p>
+                </li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="pied">
+        <p>Projet web Blue Prince – BUT MMI</p>
+    </footer>
+
+</body>
+</html>
